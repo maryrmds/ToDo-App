@@ -112,4 +112,10 @@ main {
     padding: 1rem 1.25rem;
     display: flex;
     justify-content: space-between;
+    color: var(--info-text-color);
+}
+
+.informacoes a {
+    text-decoration: none;
+    color: var(--info-text-color);
 }
