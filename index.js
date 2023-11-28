@@ -37,7 +37,6 @@ app.post('/criar', (requisicao, resposta) => {
 })
 
 app.get('/', (requisicao, resposta) => {
-
     const sql = 'SELECT * FROM tarefas'
 
     conexao.query(sql, (erro, dados) => {
@@ -45,18 +44,16 @@ app.get('/', (requisicao, resposta) => {
             return console.log(erro)
         }
 
-
-        const tarefas = dados.map((dado) => {
+        const tarefas = dados.map((dados) => {
             return {
-                id: dado.id,
-                descricao: dado.descricao,
-                completa: dado.completa === 0 ? false : true
+                id:dados.id,
+                descricao: dados.descricao,
+                completa:dados.completa === 0 ? false : true
             }
         })
-        console.log(tarefas)
-    })
 
-    resposta.render('home')
+        resposta.render('home', { tarefas })
+    })
 })
 
 const conexao = mysql.createConnection({
@@ -64,7 +61,7 @@ const conexao = mysql.createConnection({
     user: "root",
     password: "3306",
     database: "todoapp",
-    port: 3306.
+    port: 3306
 
 })
 
